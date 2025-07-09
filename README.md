@@ -136,3 +136,6 @@ Inside Database:
 If user try to input reservation while it's already reserved
 <br>
 <img src="./img/err-handing-reservation.png" alt="Alt text" width="500">
+<br>
+
+## Note : Please use ISO 8601(YYYY-MM-DDThh:mm:ssZ) standard for the date
