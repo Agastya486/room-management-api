@@ -1,8 +1,8 @@
 const isUser = (checkParams = false) =>{
     return (req,res,next) => {
-        const paramsId = req.params.id
-        const tokenId = req.user.id
-        const userRole = req.user.role
+        const paramsId = req.params.id;
+        const tokenId = req.user.id;
+        const userRole = req.user.role;
         if(userRole !== 'user'){
             return res.status(401).json({error: 'User only. Unauthorized'})
         }
@@ -11,8 +11,8 @@ const isUser = (checkParams = false) =>{
             return res.status(401).json({error: 'ID mismatch. Unauthorized'})
         }
 
-        next()
+        next();
     }
 }
 
-module.exports = isUser
+module.exports = isUser;

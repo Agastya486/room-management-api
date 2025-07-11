@@ -1,10 +1,10 @@
-const jwt = require('jsonwebtoken')
+const jwt = require('jsonwebtoken');
 
 require('dotenv').config()
-const SECRET_KEY = process.env.SECRET_KEY
+const SECRET_KEY = process.env.SECRET_KEY;
 
 async function verifyToken(req, res, next){
-    const token = req.headers['authorization']?.split(' ')[1]
+    const token = req.headers['authorization']?.split(' ')[1];
     if(!token){
         return res.status(401).json({error: 'No token provided'})
     }
@@ -17,7 +17,7 @@ async function verifyToken(req, res, next){
         console.log(decoded)
         req.user = decoded
         next()
-    })
+    });
 }
 
-module.exports = verifyToken
+module.exports = verifyToken;
