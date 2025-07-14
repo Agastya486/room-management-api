@@ -35,6 +35,7 @@ this will install:
 - express: Node.js' framework for building REST API, route handling, and middleware
 - jsonwebtoken:  Create compact, self-contained tokens used for securely transmitting information between different applications or services
 - pg: PostgreSQL's client for Node.js
+- And other dependencies
 
 ### Go to any Postgre's supported database management tool and create the tables
 ```sql
@@ -139,3 +140,16 @@ If user try to input reservation while it's already reserved
 <br>
 
 ## Note : Please use ISO 8601(YYYY-MM-DDThh:mm:ssZ) standard for the date
+
+## New version V1.1.0 : Added JWT Refresh Token
+### How to use it?
+1. Log in like usual
+2. After given a token, place it at header(if you are using postman)
+<br>
+<img src="./img/log-in-refresh-token.png" alt="Alt text" width="500">
+<br>
+3. If the token expired, you can go to `/refresh` endpoint and run it
+<br>
+<img src="./img/refresh-token.png" alt="Alt text" width="500">
+<br>
+After that, you can run the features like usual

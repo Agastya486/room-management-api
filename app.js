@@ -1,9 +1,11 @@
 const express = require('express');
+const cookieParser = require('cookie-parser');
 const app = express();
 require('dotenv').config();
 const port = process.env.PORT || 3000;
 
 app.use(express.json());
+app.use(cookieParser());
 
 // import routes
 const authRoutes = require('../room-management/route/authRoutes');

@@ -61,7 +61,7 @@ async function loginController(req, res){
         // fetch user's input and database's data
         const { email, password } = req.body;
         const storedDatas = await pool.query(fetchUserDatas, [email]);
-        
+
         // fetch email and password from db
         const matchedEmail = storedDatas.rows[0].email;
         const storedPassword = storedDatas.rows[0].password;
@@ -74,8 +74,15 @@ async function loginController(req, res){
                 name: storedDatas.rows[0].name,
                 email: storedDatas.rows[0].email,
                 role: storedDatas.rows[0].role
-            }, SECRET_KEY, {expiresIn: '24h'});
+            }, SECRET_KEY, {expiresIn: '10m'});
     
+            const refreshToken = jwt.sign({name: storedDatas.rows[0].name}, SECRET_KEY, {expiresIn: '1d'});
+
+            res.cookie('jwt', refreshToken, {
+                httpOnly: true,
+                sameSite: 'None', secure: true,
+                maxAge: 24 * 60 * 60 * 1000
+            });
             return res.status(200).json({
                 token,
                 message: 'Login success'
@@ -88,9 +95,35 @@ async function loginController(req, res){
     }
 }
 
+async function refreshToken(req, res){
+    if(req.cookies?.jwt){
+        const refreshToken = req.cookies.jwt;
+        const {email} = req.body
+        console.log('Email received:', email);
+        const storedDatas = await pool.query(fetchUserDatas, [email]);
+        console.log('Query result:', storedDatas.rows);
+
+        jwt.verify(refreshToken, SECRET_KEY, (err, decoded) =>{
+            if(err){
+                return res.status(406).json({ error: 'Unauthorized' });
+            }
+
+            const token = jwt.sign({
+                id: storedDatas.rows[0].id,
+                name: storedDatas.rows[0].name,
+                email: storedDatas.rows[0].email
+            }, SECRET_KEY, {expiresIn: '10m'})
+            return res.status(201).json({token});
+        });
+    } else{
+        return res.status(406).json({ message: 'Unauthorized' });
+    }
+}
+
 
 module.exports = {
     registerUser,
     registerAdmin,
-    loginController
+    loginController,
+    refreshToken
 };

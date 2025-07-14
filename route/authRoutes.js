@@ -6,7 +6,7 @@ const { userValidateInputsRegister, adminValidateInputsRegister, validateInputsL
 const verifyToken = require('../middleware/verifyToken');
 
 // import controller
-const { registerUser, registerAdmin, loginController } = require('../controller/authController');
+const { registerUser, registerAdmin, loginController, refreshToken } = require('../controller/authController');
 
 // user register
 router.post('/users/register', userValidateInputsRegister, registerUser);
@@ -14,5 +14,6 @@ router.post('/users/register', userValidateInputsRegister, registerUser);
 router.post('/admins/register', verifyToken, adminValidateInputsRegister, registerAdmin);
 
 router.post('/login', validateInputsLogin, loginController);
+router.post('/refresh', refreshToken)
 
 module.exports = router;
