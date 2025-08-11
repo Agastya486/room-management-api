@@ -14,7 +14,6 @@ async function verifyToken(req, res, next){
             return res.status(403).json({error: 'Failed to authenticate token'})
         }
 
-        console.log(decoded)
         req.user = decoded
         next()
     });

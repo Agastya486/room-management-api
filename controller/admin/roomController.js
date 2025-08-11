@@ -1,7 +1,7 @@
-const pool = require('../db/conn')
+const pool = require('../../db/conn')
 
 // import model
-const { getAllRoomsQuery, createRoomQuery, editRoomQuery, deleteRoomQuery } = require('../model/roomModel');
+const { getAllRoomsQuery, createRoomQuery, editRoomQuery, deleteRoomQuery } = require('../../model/admin/roomModel');
 
 async function getAllRooms(req,res){
     try{

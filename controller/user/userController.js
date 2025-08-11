@@ -1,7 +1,7 @@
-const pool = require('../db/conn')
+const pool = require('../../db/conn')
 
 // import model
-const { getUserQuery, editUserQuery, deleteUserQuery } = require('../model/userModel');
+const { getUserQuery, editUserQuery, deleteUserQuery } = require('../../model/user/userModel');
 
 async function getUser(req,res){
     const id = req.user.id;

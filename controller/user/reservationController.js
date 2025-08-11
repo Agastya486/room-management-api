@@ -1,7 +1,7 @@
-const pool = require('../db/conn')
+const pool = require('../../db/conn')
 
 // import model
-const { getReservationsQuery, addReservationQuery, checkReservationQuery } = require('../model/reservationsModel');
+const { getReservationsQuery, addReservationQuery, checkReservationQuery } = require('../../model/user/reservationsModel');
 
 async function getReservations(req,res){
     const id = req.user.id;

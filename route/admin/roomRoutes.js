@@ -6,7 +6,7 @@ const verifyToken = require('../../middleware/verifyToken') ;
 const isAdmin = require('../../middleware/isAdmin');
 
 // import controller
-const { getAllRooms, createRoom, editRoom, deleteRoom } = require('../../controller/roomController');
+const { getAllRooms, createRoom, editRoom, deleteRoom } = require('../../controller/admin/roomController');
 
 router.get('/rooms', verifyToken, isAdmin, getAllRooms); // list all rooms
 router.post('/rooms', verifyToken, isAdmin, createRoom); // create rooms
