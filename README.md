@@ -8,6 +8,7 @@
 - [Testing the API](#testing-the-api)
 - [Version Update: V1.1.0](#new-version-v110--added-jwt-refresh-token)
 - [Version Update: V1.1.1](#new-version-v111--update-readme)
+- Version Update: V1.2.0: Added GET all users endpoint and reorganize folder structure
 
 ## Introduction
 Just like it's name, this API is designed to handle room management such as reservation functionalities for a multi-role system consisting of admins and users.
