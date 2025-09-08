@@ -62,6 +62,11 @@ async function loginController(req, res){
         const { email, password } = req.body;
         const storedDatas = await pool.query(fetchUserDatas, [email]);
 
+        // If no email found 
+        if(storedDatas.rows.length == 0){
+            return res.status(401).json({error: 'invalid email or password'})
+        }
+
         // fetch email and password from db
         const matchedEmail = storedDatas.rows[0].email;
         const storedPassword = storedDatas.rows[0].password;

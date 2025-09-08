@@ -8,11 +8,13 @@ app.use(express.json());
 app.use(cookieParser());
 
 // import routes
-const authRoutes = require('../room-management/route/authRoutes');
-const roomRoutes = require('../room-management/route/admin/roomRoutes');
-const userRoutes = require('../room-management/route/user/userRoutes');
-const reservationRoutes = require('../room-management/route/user/reservationRoutes');
+const authRoutes = require('./route/authRoutes');
+// Admin routes
+const roomRoutes = require('./route/admin/roomRoutes');
 const adminUserRoutes = require('./route/admin/adminUserRoutes');
+// User routes
+const userRoutes = require('./route/user/userRoutes');
+const reservationRoutes = require('./route/user/reservationRoutes');
 
 // use routes
 app.use(authRoutes);
